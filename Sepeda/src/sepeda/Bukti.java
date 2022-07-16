@@ -45,18 +45,20 @@ public class Bukti extends javax.swing.JFrame {
     {
         try{
             sql = "SELECT\n" +
-                    "pesan.idPesanan,\n" +
-                    "pesan.tanggal,\n" +
-                    "pesan.nama,\n" +
-                    "pesan.notelp,\n" +
-                    "pesan.kodeSepeda,\n" +
-                    "bayar.total,\n" +
-                    "bayar.`status`\n" +
-                    "FROM\n" +
-                    "bayar ,\n" +
-                    "pesan\n" +
-                    "WHERE\n" +
-                    "pesan.idPesanan = bayar.idPesanan";
+"                    pesan.idPesanan,\n" +
+"                    pesan.tanggal,\n" +
+"                    pesan.nama,\n" +
+"                    pesan.notelp,\n" +
+"                    pesan.kodeSepeda,\n" +
+"                    bayar.total,\n" +
+"                    bayar.`status`\n" +
+"                    FROM\n" +
+"                    bayar ,\n" +
+"                    pesan\n" +
+"                    WHERE\n" +
+"                    pesan.idPesanan = bayar.idPesanan\n" +
+"                    AND\n" +
+"                    bayar.`status` IS NOT NULL";
 
             stat = (com.mysql.jdbc.Statement) connection.prepareStatement(sql);
             rs = stat.executeQuery(sql);
@@ -103,7 +105,7 @@ public class Bukti extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_receipt_32px.png"))); // NOI18N
@@ -368,7 +370,7 @@ public class Bukti extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        new DashPenjualan().setVisible(true);
+//        new DashPenjualan().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 

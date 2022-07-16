@@ -2,22 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/achma/Documents/NetBeansProjects/Sepeda/src/sepeda/LihatSepeda.java</file>
-            <file>file:/C:/Users/achma/Documents/NetBeansProjects/Sepeda/src/sepeda/LaporanPesanan.java</file>
-            <file>file:/C:/Users/achma/Documents/NetBeansProjects/Sepeda/src/sepeda/CetakLaporanPendapatan.java</file>
-            <file>file:/C:/Users/achma/Documents/NetBeansProjects/Sepeda/src/sepeda/Status.java</file>
-            <file>file:/C:/Users/achma/Documents/NetBeansProjects/Sepeda/src/sepeda/CetakLaporanStok.java</file>
-            <file>file:/C:/Users/achma/Documents/NetBeansProjects/Sepeda/src/sepeda/LaporanStok.java</file>
-            <file>file:/C:/Users/achma/Documents/NetBeansProjects/Sepeda/src/sepeda/Login.java</file>
-            <file>file:/C:/Users/achma/Documents/NetBeansProjects/Sepeda/src/sepeda/Pembayaran.java</file>
-            <file>file:/C:/Users/achma/Documents/NetBeansProjects/Sepeda/src/sepeda/CetakBukti.java</file>
-            <file>file:/C:/Users/achma/Documents/NetBeansProjects/Sepeda/src/sepeda/LaporanPendapatan.java</file>
-            <file>file:/C:/Users/achma/Documents/NetBeansProjects/Sepeda/src/sepeda/StokSepeda.java</file>
-            <file>file:/C:/Users/achma/Documents/NetBeansProjects/Sepeda/src/sepeda/DashPenjualan.java</file>
-            <file>file:/C:/Users/achma/Documents/NetBeansProjects/Sepeda/src/sepeda/Pemesanan.java</file>
-            <file>file:/C:/Users/achma/Documents/NetBeansProjects/Sepeda/src/sepeda/Bukti.java</file>
-            <file>file:/C:/Users/achma/Documents/NetBeansProjects/Sepeda/src/sepeda/CetakLaporanPemesanan.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

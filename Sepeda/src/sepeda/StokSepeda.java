@@ -33,7 +33,7 @@ public class StokSepeda extends javax.swing.JFrame {
     Connection connection;
     Statement stat,stat1,stat2;
     ResultSet rs;
-    String sql, sql1, sql2, roleDB;
+    String sql, sql1, sql2, sql3, roleDB;
     
     public StokSepeda() {
         initComponents();
@@ -51,7 +51,7 @@ public class StokSepeda extends javax.swing.JFrame {
     void Date()
     {
         SimpleDateFormat df = 
-                new SimpleDateFormat("d MMM yyyy", 
+                new SimpleDateFormat("d MMMM yyyy", 
                 new java.util.Locale("id"));
         Date today = new Date();
         jLabel16.setText(df.format(today));
@@ -81,19 +81,22 @@ public class StokSepeda extends javax.swing.JFrame {
     {
         try{
             sql = "SELECT\n" +
-                    "sepeda.id,\n" +
-                    "sepeda.kodeSepeda,\n" +
-                    "sepeda.jenis,\n" +
-                    "sepeda.merek,\n" +
-                    "sepeda.warna,\n" +
-                    "statussepeda.`status`,\n" +
-                    "statussepeda.tglmasuk,\n" +
-                    "sepeda.harga\n" +
-                    "FROM\n" +
-                    "sepeda ,\n" +
-                    "statussepeda\n" +
-                    "WHERE\n" +
-                    "sepeda.kodeSepeda = statussepeda.kodeSepeda";
+                "	sepeda.id, \n" +
+                "	sepeda.kodeSepeda, \n" +
+                "	sepeda.jenis, \n" +
+                "	sepeda.merek, \n" +
+                "	sepeda.warna, \n" +
+                "	statussepeda.`status`, \n" +
+                "	statussepeda.tglmasuk, \n" +
+                "	sepeda.harga, \n" +
+                "	stokvendor.vendor\n" +
+                "FROM\n" +
+                "	sepeda,\n" +
+                "	statussepeda,\n" +
+                "	stokvendor\n" +
+                "WHERE\n" +
+                "	sepeda.kodeSepeda = statussepeda.kodeSepeda AND\n" +
+                "	sepeda.kodeSepeda = stokvendor.kodeSepeda";
 
             stat = (com.mysql.jdbc.Statement) connection.prepareStatement(sql);
             rs = stat.executeQuery(sql);
@@ -129,6 +132,8 @@ public class StokSepeda extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -143,7 +148,7 @@ public class StokSepeda extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -210,6 +215,11 @@ public class StokSepeda extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("SPD-XXXXXX");
 
+        jTextField6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("Vendor");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -226,9 +236,11 @@ public class StokSepeda extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel7))
-                        .addGap(50, 50, 50)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addGap(47, 47, 47)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField6)
                             .addComponent(jTextField2)
                             .addComponent(jTextField3)
                             .addComponent(jTextField4)
@@ -256,8 +268,12 @@ public class StokSepeda extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField4))
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -266,6 +282,7 @@ public class StokSepeda extends javax.swing.JFrame {
         );
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_Plus_30px.png"))); // NOI18N
         jButton1.setText("Tambah");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -274,6 +291,7 @@ public class StokSepeda extends javax.swing.JFrame {
         });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_update_30px.png"))); // NOI18N
         jButton2.setText("Perbarui");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -282,6 +300,7 @@ public class StokSepeda extends javax.swing.JFrame {
         });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_delete_30px.png"))); // NOI18N
         jButton3.setText("Hapus");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -290,6 +309,7 @@ public class StokSepeda extends javax.swing.JFrame {
         });
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_Back_Arrow_30px.png"))); // NOI18N
         jButton4.setText("Kembali");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -298,6 +318,7 @@ public class StokSepeda extends javax.swing.JFrame {
         });
 
         jButton5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_transaction_list_32px.png"))); // NOI18N
         jButton5.setText("Laporan Stok");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -323,15 +344,15 @@ public class StokSepeda extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -441,11 +462,11 @@ public class StokSepeda extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -469,7 +490,6 @@ public class StokSepeda extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        new DashPenjualan().setVisible(true);
         this.dispose();
         
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -495,9 +515,10 @@ public class StokSepeda extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     void ProcessInput() throws SQLException {
-        if ("".equals(jTextField2.getText()) || 
-                "".equals(jTextField3.getText()) || 
-                "".equals(jTextField4.getText()) ||
+        if ("".equals(jTextField2.getText()) &&
+                "".equals(jTextField3.getText()) &&
+                "".equals(jTextField4.getText()) &&
+                "".equals(jTextField6.getText()) &&
                 "".equals(jTextField5.getText()) )
         {JOptionPane.showMessageDialog(null , "Isi Form dengan benar");}
         else
@@ -509,6 +530,7 @@ public class StokSepeda extends javax.swing.JFrame {
             String harga = jTextField5.getText();
             String tglMasuk = jLabel16.getText();
             String status = "Ready";
+            String vendor = jTextField6.getText();
         
             
 
@@ -523,12 +545,20 @@ public class StokSepeda extends javax.swing.JFrame {
                 +kodeSepeda+"','"
                 +status+"','"
                 +tglMasuk+"')";
+
+            sql3 = "INSERT INTO stokvendor(kodeSepeda, vendor, tglBeli) VALUES ('"
+                +kodeSepeda+"','"
+                +vendor+"','"
+                +tglMasuk+"')";
             
             stat = (com.mysql.jdbc.Statement) connection.prepareStatement(sql1);
             stat.execute(sql1);
 
             stat1 = (com.mysql.jdbc.Statement) connection.prepareStatement(sql2);
             stat1.execute(sql2);
+
+            stat2 = (com.mysql.jdbc.Statement) connection.prepareStatement(sql3);
+            stat2.execute(sql3);
 
             stat.close();
             stat1.close();
@@ -539,9 +569,10 @@ public class StokSepeda extends javax.swing.JFrame {
 
     
     void Delete1() throws SQLException {
-        if ("".equals(jTextField2.getText()) || 
-                "".equals(jTextField3.getText()) || 
-                "".equals(jTextField4.getText()) ||
+        if ("".equals(jTextField2.getText()) &&
+                "".equals(jTextField3.getText()) &&
+                "".equals(jTextField4.getText()) &&
+                "".equals(jTextField6.getText()) &&
                 "".equals(jTextField5.getText()) )
         {JOptionPane.showMessageDialog(null , "Pilih Data");}
         else
@@ -556,14 +587,15 @@ public class StokSepeda extends javax.swing.JFrame {
             stat.execute(sql1);
             stat.close();
             
-            JOptionPane.showMessageDialog(null , "Data Berhasil Dihapus");
+            JOptionPane.showMessageDialog(null , "Data Sepeda Berhasil Dihapus");
         }    
     }
     
     void Delete2() throws SQLException {
-        if ("".equals(jTextField2.getText()) || 
-                "".equals(jTextField3.getText()) || 
-                "".equals(jTextField4.getText()) ||
+        if ("".equals(jTextField2.getText()) &&
+                "".equals(jTextField3.getText()) &&
+                "".equals(jTextField4.getText()) &&
+                "".equals(jTextField6.getText()) &&
                 "".equals(jTextField5.getText()) )
         {JOptionPane.showMessageDialog(null , "Pilih Data");}
         else
@@ -578,14 +610,38 @@ public class StokSepeda extends javax.swing.JFrame {
             stat.execute(sql1);
             stat.close();
             
-            JOptionPane.showMessageDialog(null , "Data Berhasil Dihapus");
+            JOptionPane.showMessageDialog(null , "Data Status Sepeda Berhasil Dihapus");
+        }    
+    }
+
+    void Delete3() throws SQLException {
+        if ("".equals(jTextField2.getText()) &&
+                "".equals(jTextField3.getText()) &&
+                "".equals(jTextField4.getText()) &&
+                "".equals(jTextField6.getText()) &&
+                "".equals(jTextField5.getText()) )
+        {JOptionPane.showMessageDialog(null , "Pilih Data");}
+        else
+        {
+            String kodeSepeda = jLabel11.getText();
+
+            
+
+            sql1 = "DELETE FROM stokvendor WHERE kodeSepeda = '"+kodeSepeda+"'";
+            
+            stat = (com.mysql.jdbc.Statement) connection.prepareStatement(sql1);
+            stat.execute(sql1);
+            stat.close();
+            
+            JOptionPane.showMessageDialog(null , "Data Stok Vendor Berhasil Dihapus");
         }    
     }
     
     void ProcessUpdate() throws SQLException {
-        if ("".equals(jTextField2.getText()) || 
-                "".equals(jTextField3.getText()) || 
-                "".equals(jTextField4.getText()) ||
+        if ("".equals(jTextField2.getText()) &&
+                "".equals(jTextField3.getText()) &&
+                "".equals(jTextField4.getText()) &&
+                "".equals(jTextField6.getText()) &&
                 "".equals(jTextField5.getText()) )
         {JOptionPane.showMessageDialog(null , "Isi Form dengan benar");}
         else
@@ -602,10 +658,22 @@ public class StokSepeda extends javax.swing.JFrame {
                     + "warna = '"+warna+"', "
                     + "harga = '"+harga+"' "
                     + "where kodeSepeda = '"+kodeSepeda+"'";
+
+            sql2 = "update sepeda set "
+                    + "jenis = '"+jenis+"', "
+                    + "merek = '"+merek+"', "
+                    + "warna = '"+warna+"', "
+                    + "harga = '"+harga+"' "
+                    + "where kodeSepeda = '"+kodeSepeda+"'";
             
             stat = (com.mysql.jdbc.Statement) connection.prepareStatement(sql1);
             stat.execute(sql1);
+
+            stat1 = (com.mysql.jdbc.Statement) connection.prepareStatement(sql2);
+            stat1.execute(sql2);
+
             stat.close();
+            stat1.close();
             
             JOptionPane.showMessageDialog(null , "Telah diperbarui");
         }    
@@ -661,6 +729,9 @@ public class StokSepeda extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         //open laporan stok sepeda
+
+        new LaporanStok().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -740,6 +811,7 @@ public class StokSepeda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -752,5 +824,6 @@ public class StokSepeda extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }

@@ -40,16 +40,16 @@ public class CetakLaporanPendapatan extends javax.swing.JFrame {
     Connection connection;
     java.sql.Statement stat,stat1,stat2;
     ResultSet rs;
-    String total, sql, sql1, sql2, roleDB, nowMonth;
+    String total, sql, sql1, sql2, roleDB, nowTime;
     
-    public CetakLaporanPendapatan(String month) {
+    public CetakLaporanPendapatan(String month, String year) {
         try {
             initComponents();
             koneksi condb = new koneksi();
             condb.Config();
             connection = (Connection) condb.connect;
             stat = (com.mysql.jdbc.Statement) condb.stmt;
-            nowMonth = month;
+            nowTime = month+" "+year;
             Process();
             
             Toolkit tk = Toolkit.getDefaultToolkit();  
@@ -87,7 +87,7 @@ public class CetakLaporanPendapatan extends javax.swing.JFrame {
                     "bayar\n" +
                     "WHERE\n" +
                     "pesan.idPesanan = bayar.idPesanan AND\n" +
-                    "pesan.tanggal LIKE '% "+nowMonth+"%' AND\n" +
+                    "pesan.tanggal LIKE '% "+nowTime+"%' AND\n" +
                     "bayar.`status` = 'Full'";
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
@@ -113,7 +113,7 @@ public class CetakLaporanPendapatan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -29,7 +29,7 @@ public class koneksi {
             Class.forName("com.mysql.jdbc.Driver");
             connect = DriverManager.getConnection(url, user, pass);
             stmt = connect.createStatement();
-            System.out.print("Connection Success");
+//            System.out.print("Connection Success");
         }
         catch(ClassNotFoundException | SQLException e)
         {

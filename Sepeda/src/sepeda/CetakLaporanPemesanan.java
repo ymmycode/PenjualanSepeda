@@ -39,16 +39,16 @@ public class CetakLaporanPemesanan extends javax.swing.JFrame {
     Connection connection;
     java.sql.Statement stat,stat1,stat2;
     ResultSet rs;
-    String total, sql, sql1, sql2, roleDB, nowMonth;
+    String total, sql, sql1, sql2, roleDB, nowTime;
     
-    public CetakLaporanPemesanan(String month) {
+    public CetakLaporanPemesanan(String month, String year) {
         try {
             initComponents();
             koneksi condb = new koneksi();
             condb.Config();
             connection = (Connection) condb.connect;
             stat = (com.mysql.jdbc.Statement) condb.stmt;
-            nowMonth = month;
+            nowTime = month+" "+year;
             Process();
             
             Toolkit tk = Toolkit.getDefaultToolkit();  
@@ -92,7 +92,7 @@ public class CetakLaporanPemesanan extends javax.swing.JFrame {
                     "bayar\n" +
                     "WHERE\n" +
                     "pesan.idPesanan = bayar.idPesanan AND\n" +
-                    "pesan.tanggal LIKE '%"+nowMonth+"%'";
+                    "pesan.tanggal LIKE '%"+nowTime+"%'";
             JRDesignQuery newQuery = new JRDesignQuery();
             newQuery.setText(sql);
             jd1.setQuery(newQuery);
